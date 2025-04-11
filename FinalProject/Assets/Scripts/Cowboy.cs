@@ -1,3 +1,4 @@
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class Cowboy : MonoBehaviour
@@ -5,13 +6,19 @@ public class Cowboy : MonoBehaviour
     static public Cowboy S{get; private set; }
 
     [Header("Inscribed")]
-    public float speed = 30;
+    public float speed = 10f;
+    public float jumpForce = 5f;
     public float pitchMult = 30;
+    public Animator anim;
 
     [Header("Dynamic")] [Range(0, 4)]
+
     private float _shieldLevel = 1; // remember the underscore
     [Tooltip( "This field holds a reference to the last triggering GameObject" )]
     private GameObject lastTriggerGo = null;
+    private Rigidbody rb;
+    private bool isGrounded = true;
+
     //public delegate void WeaponFireDelegate();
     //public event WeaponFireDelegate fireEvent;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,18 +29,37 @@ public class Cowboy : MonoBehaviour
         }else{
             Debug.LogError("Attempted to assign second Cowboy.S");
         }
+
+        rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         float hAxis = Input.GetAxis("Horizontal");
-        float vAxis = Input.GetAxis("Vertical");
+        // float vAxis = Input.GetAxis("Vertical");
 
-        Vector3 pos = transform.position;
-        pos.x += hAxis * speed * Time.deltaTime;
-        pos.y += vAxis * speed * Time.deltaTime;
-        transform.position = pos;
+        Vector3 velocity = rb.linearVelocity;
+        velocity.x = hAxis*speed;
+        velocity.z = 0f;
+        rb.linearVelocity = velocity;
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F)) {
+            Debug.Log("F key pressed - triggering Attack1");
+            anim.SetTrigger("Attack1");
+        }
+
+        // Vector3 pos = transform.position;
+        // pos.x += hAxis * speed * Time.deltaTime;
+        // pos.y += vAxis * speed * Time.deltaTime;
+        // transform.position = pos;
         
     }
 
@@ -62,4 +88,12 @@ public class Cowboy : MonoBehaviour
             Debug.LogWarning("Shield trigger hit by non-Enemy: " +go.name);
         }
     }
+
+    void OnCollisionEnter(Collision coll) {
+    if (coll.gameObject.CompareTag("Ground")) {
+        isGrounded = true;
+        }
+    }
+
 }
+
