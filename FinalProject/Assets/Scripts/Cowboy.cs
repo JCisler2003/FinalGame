@@ -9,6 +9,11 @@ public class Cowboy : MonoBehaviour
     public float speed = 10f;
     public float jumpForce = 10f;
     public float pitchMult = 30;
+    [Header("Sword Attack Settings")]
+    public Transform hitPoint; // The point where the sword hits
+    public float attackRange = 1.5f;
+    public float attackDamage = 5f;
+    public LayerMask enemyLayer;
 
     [Header("Dynamic")] [Range(0, 4)]
     private float _shieldLevel = 1; // remember the underscore
@@ -84,6 +89,7 @@ public class Cowboy : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             spriteAnimator.PlayAnimation("attack");
+            Invoke("DealSwordDamage", 0.2f);
         }
         else if (!isGrounded)
         {
@@ -133,4 +139,18 @@ public class Cowboy : MonoBehaviour
             isGrounded = true;
         }
     }
+
+    public void DealSwordDamage()
+{
+    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(hitPoint.position, attackRange, enemyLayer);
+
+    foreach (Collider2D enemyCollider in hitEnemies)
+    {
+        Enemy enemy = enemyCollider.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(attackDamage);
+        }
+    }
+}
 }

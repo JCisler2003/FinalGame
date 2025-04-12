@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
 
     protected BoundsCheck bndCheck;
 
+
     // void Start()
     // {
     //     GameObject scoreGO = GameObject.Find("ScoreCounter");
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour
      void Awake()
      {
          bndCheck = GetComponent<BoundsCheck>();
+
      }
 
 
@@ -64,6 +66,23 @@ public class Enemy : MonoBehaviour
         tempPos.x -= speed * Time.deltaTime;
         pos = tempPos;
     }
+
+    public void TakeDamage(float amount)
+{
+    health -= amount;
+    Debug.Log(gameObject.name + " took " + amount + " damage. Remaining: " + health);
+
+    if (health <= 0)
+    {
+        Die();
+    }
+}
+
+private void Die()
+{
+    // Optional: Notify other systems, play VFX, SFX, etc.
+    Destroy(gameObject);
+}
 
     // void OnCollisionEnter( Collision coll ) 
     // {

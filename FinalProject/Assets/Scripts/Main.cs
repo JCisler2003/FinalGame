@@ -85,13 +85,19 @@ public class Main : MonoBehaviour
         Vector3 pos = Vector3.zero;
         //float xMin = -bndCheck.camWidth + enemyInset;
         //float xMax = bndCheck.camWidth - enemyInset;
-        float yMin = -bndCheck.camHeight + enemyInset;
+       
+       float yMin = -bndCheck.camHeight + enemyInset;
+
+
         //float yMax = bndCheck.TopScreen - enemyInset;
-        float yMax = bndCheck.TopScreen;
+       
+        float yMax = bndCheck.camHeight;
+
         //pos.x = Random.Range( xMin, xMax );
         pos.x = bndCheck.camWidth + enemyInset;
         //pos.y = bndCheck.camHeight + enemyInset;
-        pos.y = Random.Range( yMin, yMax );
+        //pos.y = Random.Range( yMin, yMax );
+        pos.y = bndCheck.TopScreen;
         go.transform.position = pos;
 
         // invoke SpawnEnemy() again

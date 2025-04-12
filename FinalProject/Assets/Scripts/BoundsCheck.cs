@@ -31,7 +31,7 @@ public class BoundsCheck : MonoBehaviour
     void Awake()
     {
         camHeight = Camera.main.orthographicSize;
-        TopScreen = -.7f;
+        TopScreen = -1.685f;
         camWidth = camHeight * Camera.main.aspect;
     }
 
@@ -58,8 +58,8 @@ public class BoundsCheck : MonoBehaviour
             //isOnScreen = false;
         }
 
-        if (pos.y > TopScreen + checkRadius){
-            pos.y = TopScreen + checkRadius;
+        if (pos.y > camHeight + checkRadius){
+            pos.y = camHeight + checkRadius;
             screenLocs |= eScreenLocs.offUp;
             //isOnScreen = false;
         }
