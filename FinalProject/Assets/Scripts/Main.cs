@@ -1,8 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
 public class Main : MonoBehaviour
 {
+    private int enemiesSpawned = 0;
+    public int maxEnemies = 6;
     static private Main S; // a private singleton for Main
 
     //static private Dictionary<eWeaponType, WeaponDefinition> WEAP_DICT;
@@ -64,46 +68,28 @@ public class Main : MonoBehaviour
     //     }
     // }
 
-    public void SpawnEnemy() {
+    public void SpawnEnemy()
+    {
+        if (enemiesSpawned >= maxEnemies) return;
 
-        // if(!spawnEnemies){
-        //     Invoke(nameof(SpawnEnemy), 1f / enemySpawnPerSecond);
-        //     return;
-
-        //}
-        // pick a random enemy prefab to instantiate 
         int ndx = Random.Range(0, prefabEnemies.Length);
-        GameObject go = Instantiate<GameObject>( prefabEnemies[ ndx ] );
+        GameObject go = Instantiate<GameObject>(prefabEnemies[ndx]);
 
-        // position the enemy above the screen with a random x position
-        float enemyInset = enemyInsetDefault;
-        if (go.GetComponent<BoundsCheck>() != null) {
-            enemyInset = Mathf.Abs( go.GetComponent<BoundsCheck>().radius );
-        }
+        float spawnX = 10f;
+        float[] possibleY = new float[] { 0.5f, 0.75f };
+        float spawnY = possibleY[Random.Range(0, possibleY.Length)];
 
-        // set the initial position for the spawned enemy
-        Vector3 pos = Vector3.zero;
-        //float xMin = -bndCheck.camWidth + enemyInset;
-        //float xMax = bndCheck.camWidth - enemyInset;
-       
-       float yMin = -bndCheck.camHeight + enemyInset;
-
-
-        //float yMax = bndCheck.TopScreen - enemyInset;
-       
-        float yMax = bndCheck.camHeight;
-
-        //pos.x = Random.Range( xMin, xMax );
-        pos.x = bndCheck.camWidth + enemyInset;
-        //pos.y = bndCheck.camHeight + enemyInset;
-        //pos.y = Random.Range( yMin, yMax );
-        pos.y = bndCheck.TopScreen;
+        Vector3 pos = new Vector3(spawnX, spawnY, 0f);
         go.transform.position = pos;
 
-        // invoke SpawnEnemy() again
-        Invoke( nameof(SpawnEnemy), 1f/enemySpawnPerSecond );
-    }
+        enemiesSpawned++;
 
+        // Only keep invoking if we haven’t hit the limit
+        if (enemiesSpawned < maxEnemies)
+        {
+            Invoke(nameof(SpawnEnemy), 3f);
+        }
+    }
     void DelayedRestart() {
         // invoke the Restart() method in gameRestartDelay seconds
         Invoke( nameof(Restart), gameRestartDelay);

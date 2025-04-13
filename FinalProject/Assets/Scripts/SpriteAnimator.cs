@@ -10,13 +10,15 @@ public class SpriteAnimator : MonoBehaviour
     public Sprite[] runSprites;
     public Sprite[] jumpSprites;
     public Sprite[] attackSprites;
+    public Sprite[] hitSprites;
+    public Sprite[] deathSprites;
 
     public float frameRate = 0.1f;
 
     private float timer;
     private int frameIndex;
 
-    private enum AnimState { Idle, Run, Jump, Attack }
+    private enum AnimState { Idle, Run, Jump, Attack, Hit, Death }
     private AnimState currentState = AnimState.Idle;
 
     private bool isLocked = false;
@@ -30,7 +32,10 @@ public class SpriteAnimator : MonoBehaviour
             if (lockTimer <= 0f)
             {
                 isLocked = false;
-                SetAnimation(AnimState.Idle); // Return to idle after attack finishes
+                if (currentState == AnimState.Attack || currentState == AnimState.Hit)
+                {
+                    SetAnimation(AnimState.Idle);
+                }
             }
         }
 
@@ -48,13 +53,29 @@ public class SpriteAnimator : MonoBehaviour
 
     public void PlayAnimation(string anim)
     {
-        if (isLocked && anim != "attack") return;
+        if (isLocked && anim != "attack" && anim != "hit" && anim != "death") return;
 
         if (anim == "attack" && currentState != AnimState.Attack)
         {
             SetAnimation(AnimState.Attack);
             isLocked = true;
             lockTimer = attackSprites.Length * frameRate;
+            return;
+        }
+
+        if (anim == "hit" && currentState != AnimState.Hit)
+        {
+            SetAnimation(AnimState.Hit);
+            isLocked = true;
+            lockTimer = hitSprites.Length * frameRate;
+            return;
+        }
+
+        if (anim == "death" && currentState != AnimState.Death)
+        {
+            SetAnimation(AnimState.Death);
+            isLocked = true;
+            lockTimer = deathSprites.Length * frameRate;
             return;
         }
 
@@ -92,6 +113,8 @@ public class SpriteAnimator : MonoBehaviour
             case AnimState.Run: return runSprites;
             case AnimState.Jump: return jumpSprites;
             case AnimState.Attack: return attackSprites;
+            case AnimState.Hit: return hitSprites;
+            case AnimState.Death: return deathSprites;
             default: return idleSprites;
         }
     }

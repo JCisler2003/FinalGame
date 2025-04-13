@@ -270,9 +270,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95c836954707c774fb91cd49cedda451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxEnemies: 6
   prefabEnemies:
-  - {fileID: 7854025944910787539, guid: 03d12ad74b3c7bd4ba6e629decca0e2a, type: 3}
-  enemySpawnPerSecond: 0.5
+  - {fileID: 7907387256903112242, guid: ffb394de7aec0254eb5a21ffddb8bc50, type: 3}
+  enemySpawnPerSecond: 0.125
   enemyInsetDefault: 1.5
   gameRestartDelay: 2
 --- !u!114 &330585549
@@ -745,6 +746,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4513981823381805328, guid: ddf5e0960a8ac9848a5261b3dc5c98f9, type: 3}
+      propertyPath: hitSprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4513981823381805328, guid: ddf5e0960a8ac9848a5261b3dc5c98f9, type: 3}
+      propertyPath: deathSprites.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4513981823381805328, guid: ddf5e0960a8ac9848a5261b3dc5c98f9, type: 3}
+      propertyPath: 'hitSprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: -8008791250619013794, guid: 3503a79f1b9d59f4a8af006cb749f681, type: 3}
+    - target: {fileID: 4513981823381805328, guid: ddf5e0960a8ac9848a5261b3dc5c98f9, type: 3}
+      propertyPath: 'hitSprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 3891156215361153934, guid: 3503a79f1b9d59f4a8af006cb749f681, type: 3}
+    - target: {fileID: 4513981823381805328, guid: ddf5e0960a8ac9848a5261b3dc5c98f9, type: 3}
+      propertyPath: 'hitSprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: -7146689698409757683, guid: 3503a79f1b9d59f4a8af006cb749f681, type: 3}
+    - target: {fileID: 4513981823381805328, guid: ddf5e0960a8ac9848a5261b3dc5c98f9, type: 3}
+      propertyPath: 'hitSprites.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8523606802079886837, guid: 3503a79f1b9d59f4a8af006cb749f681, type: 3}
+    - target: {fileID: 4513981823381805328, guid: ddf5e0960a8ac9848a5261b3dc5c98f9, type: 3}
+      propertyPath: 'deathSprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6991849013916550155, guid: c63d7b876b691564c9f996964d39de0d, type: 3}
+    - target: {fileID: 4513981823381805328, guid: ddf5e0960a8ac9848a5261b3dc5c98f9, type: 3}
+      propertyPath: 'deathSprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: -276728812324164698, guid: c63d7b876b691564c9f996964d39de0d, type: 3}
+    - target: {fileID: 4513981823381805328, guid: ddf5e0960a8ac9848a5261b3dc5c98f9, type: 3}
+      propertyPath: 'deathSprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: 3156895337291164288, guid: c63d7b876b691564c9f996964d39de0d, type: 3}
+    - target: {fileID: 4513981823381805328, guid: ddf5e0960a8ac9848a5261b3dc5c98f9, type: 3}
+      propertyPath: 'deathSprites.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1400002288684528572, guid: c63d7b876b691564c9f996964d39de0d, type: 3}
+    - target: {fileID: 4513981823381805328, guid: ddf5e0960a8ac9848a5261b3dc5c98f9, type: 3}
+      propertyPath: 'deathSprites.Array.data[4]'
+      value: 
+      objectReference: {fileID: -1891625820773287384, guid: c63d7b876b691564c9f996964d39de0d, type: 3}
+    - target: {fileID: 4513981823381805328, guid: ddf5e0960a8ac9848a5261b3dc5c98f9, type: 3}
+      propertyPath: 'deathSprites.Array.data[5]'
+      value: 
+      objectReference: {fileID: -5789737788129074030, guid: c63d7b876b691564c9f996964d39de0d, type: 3}
     - target: {fileID: 5615056371035367731, guid: ddf5e0960a8ac9848a5261b3dc5c98f9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.9
@@ -787,6 +836,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463055482096543774, guid: ddf5e0960a8ac9848a5261b3dc5c98f9, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8463055482096543774, guid: ddf5e0960a8ac9848a5261b3dc5c98f9, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []

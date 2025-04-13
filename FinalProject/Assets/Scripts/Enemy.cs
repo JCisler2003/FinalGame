@@ -1,126 +1,88 @@
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Scripting.APIUpdating;
 
 [RequireComponent(typeof(BoundsCheck))]
-
 public class Enemy : MonoBehaviour
 {
-    //public Score scoreCounter;
     [Header("Inscribed")]
-
-    public float speed = 10f; // the movement speed is 10m/s
-    public float fireRate = 0.3f; // seconds/shot (unused)
-    public float health = 10; // damage needd to destroy this enemy 
-    public int score = 100; // points earned for destroying this
-
-   // protected bool calledShipDestroyed = false;
+    public float speed = 10f;
+    public float health = 10;
+    public int score = 100;
 
     protected BoundsCheck bndCheck;
+    private SpriteAnimator spriteAnimator;
+    private bool isDying = false;
 
+    void Awake()
+    {
+        bndCheck = GetComponent<BoundsCheck>();
+        spriteAnimator = GetComponentInChildren<SpriteAnimator>();
+    }
 
-    // void Start()
-    // {
-    //     GameObject scoreGO = GameObject.Find("ScoreCounter");
-    //     scoreCounter = scoreGO.GetComponent<Score>();
-        
-    // }
-
-     void Awake()
-     {
-         bndCheck = GetComponent<BoundsCheck>();
-
-     }
-
-
-
-    // this is a property: a method that acts like a field
-    public Vector3 pos {
-        get {
-            return this.transform.position;
-        }
-
-        set {
-            this.transform.position = value;
-        }
+    public Vector3 pos
+    {
+        get { return this.transform.position; }
+        set { this.transform.position = value; }
     }
 
     void Update()
     {
-        Move();
+        if (!isDying)
+        {
+            Move();
 
-        // check whether this enemy has gone off the bottom of the screen 
-        if ( bndCheck.LocIs( BoundsCheck.eScreenLocs.offLeft ) ) {
-            Destroy( gameObject );
+            if (bndCheck.LocIs(BoundsCheck.eScreenLocs.offLeft))
+            {
+                Destroy(gameObject);
+            }
         }
-
-        // if (!bndCheck.isOnScreen){
-        //     if (pos.y < bndCheck.camHeight - bndCheck.radius){
-        //         Destroy(gameObject);
-        //     }
-        // }
     }
 
-    public virtual void Move() {
+    public virtual void Move()
+    {
         Vector3 tempPos = pos;
         tempPos.x -= speed * Time.deltaTime;
         pos = tempPos;
     }
 
     public void TakeDamage(float amount)
-{
-    health -= amount;
-    Debug.Log(gameObject.name + " took " + amount + " damage. Remaining: " + health);
-
-    if (health <= 0)
     {
-        Die();
+        if (isDying) return;
+
+        health -= amount;
+
+        if (spriteAnimator != null)
+        {
+            spriteAnimator.PlayAnimation("hit");
+        }
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        if (isDying) return;
+        isDying = true;
+
+        if (spriteAnimator != null)
+        {
+            spriteAnimator.PlayAnimation("death");
+        }
+
+        Destroy(gameObject, 0.5f);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Cowboy cowboy = other.GetComponent<Cowboy>();
+            if (cowboy != null)
+            {
+                cowboy.TakeDamage(1);
+            }
+        }
     }
 }
-
-private void Die()
-{
-    // Optional: Notify other systems, play VFX, SFX, etc.
-    Destroy(gameObject);
-}
-
-    // void OnCollisionEnter( Collision coll ) 
-    // {
-    //     GameObject otherGO = coll.gameObject;
-    //     if ( otherGO.GetComponent<ProjectileHero>() != null ) {
-    //         Destroy( otherGO ); // destroy the projectile
-    //         Destroy( gameObject ); // destory this enemy GameObject
-    //     }
-    //     else {
-    //         Debug.Log( "Enemy hit by non-ProjectileHero: " + otherGO.name ); 
-    //     }
-    // }
-
-//     void OnCollisionEnter( Collision coll ){
-//         GameObject otherGO = coll.gameObject;
-
-//         ProjectileHero p = otherGO.GetComponent<ProjectileHero>();
-//         if (p != null){
-
-//             //Debug.Log("Weapon successfully subscribed to fireEvent.");
-
-//             if (bndCheck.isOnScreen){
-//                 health -= Main.GET_WEAPON_DEFINITION(p.type).damageOnHit;
-//                 if (health <= 0){
-//                     // tell main that this ship was destroyed
-//                     if (!calledShipDestroyed) {
-//                         calledShipDestroyed = true;
-//                         Main.SHIP_DESTROYED( this );
-//                     }
-//                     Destroy(this.gameObject);
-//                     scoreCounter.score += 100;
-//                 }
-//             }
-//             Destroy(otherGO);
-//         }
-//         else{
-//             print("Enemy hit by non-ProjectileHero: " + otherGO.name);
-//         }
-        
-//     }
- }
