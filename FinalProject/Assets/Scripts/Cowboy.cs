@@ -9,6 +9,7 @@ public class Cowboy : MonoBehaviour
     public float speed = 10f;
     public float jumpForce = 10f;
     public float pitchMult = 30;
+    
     [Header("Sword Attack Settings")]
     public Transform hitPoint;
     public float attackRange = 1.5f;
@@ -52,6 +53,10 @@ public class Cowboy : MonoBehaviour
         if (visual != null && Mathf.Abs(hAxis) > 0.01f)
         {
             spriteAnimator.FlipSprite(hAxis);
+
+            Vector3 HitPointPos = hitPoint.localPosition;
+            HitPointPos.x *= -1;
+            hitPoint.localPosition = HitPointPos;
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)

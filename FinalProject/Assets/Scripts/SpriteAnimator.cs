@@ -17,6 +17,7 @@ public class SpriteAnimator : MonoBehaviour
 
     private float timer;
     private int frameIndex;
+    
 
     private enum AnimState { Idle, Run, Jump, Attack, Hit, Death }
     private AnimState currentState = AnimState.Idle;

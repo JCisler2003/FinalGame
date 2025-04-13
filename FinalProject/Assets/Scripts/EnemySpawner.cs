@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Spawn Area")]
     public float spawnX = 12f;
+    public float spawnXLeft = -12f;
     public Vector2 spawnYRange = new Vector2(-3f, 3f);
 
     private List<GameObject> activeEnemies = new List<GameObject>();
@@ -24,7 +25,9 @@ public class EnemySpawner : MonoBehaviour
         if (enemyPrefab == null || activeEnemies.Count >= maxEnemies) return;
 
         float y = Random.Range(spawnYRange.x, spawnYRange.y);
+        //float x = (Random.value < 0.5f) ? spawnXLeft : spawnX;
         Vector3 spawnPosition = new Vector3(spawnX, y, 0f);
+       // Vector3 spawnPosition = new Vector3(x, y, 0f);
 
         GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         activeEnemies.Add(enemy);

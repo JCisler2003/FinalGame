@@ -30,10 +30,10 @@ public class Enemy : MonoBehaviour
         {
             Move();
 
-            if (bndCheck.LocIs(BoundsCheck.eScreenLocs.offLeft))
-            {
+           if (bndCheck.LocIs(BoundsCheck.eScreenLocs.offLeft))
+           {
                 Destroy(gameObject);
-            }
+           }
         }
     }
 
