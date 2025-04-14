@@ -57,7 +57,7 @@ public class MainLvl2 : MonoBehaviour
         }
         else // Goblin
         {
-            spawnY = -1f;
+            spawnY = -1.5f;
         }
 
         go.transform.position = new Vector3(spawnX, spawnY, 0f);
@@ -78,7 +78,7 @@ public class MainLvl2 : MonoBehaviour
         {
             levelCleared = true;
             Debug.Log("All enemies cleared! Reloading Scene_Lvl2...");
-            Invoke(nameof(ReloadLevel), 2f); // Or advance to a new level later
+            SceneManager.LoadScene("End_Screen"); // Or advance to a new level later
         }
     }
 
