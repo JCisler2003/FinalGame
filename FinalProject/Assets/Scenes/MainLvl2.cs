@@ -86,7 +86,7 @@ public class MainLvl2 : MonoBehaviour
     void LoadNextLevel()
     {
         // Replace this with your actual scene name
-        SceneManager.LoadScene("Scene_Level2");
+        SceneManager.LoadScene("End Screen");
     }
 
     void DelayedRestart()
