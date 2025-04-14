@@ -105,7 +105,15 @@ public class Cowboy : MonoBehaviour
     void Die()
     {
         Destroy(this.gameObject);
-        Main.HERO_DIED();
+
+        if (Main.S != null)
+        {
+            Main.HERO_DIED();
+        }
+        else if (MainLvl2.S != null)
+        {
+            MainLvl2.HERO_DIED();
+        }
     }
 
     void OnCollisionEnter2D(Collision2D coll)

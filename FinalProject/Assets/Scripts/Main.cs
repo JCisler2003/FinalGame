@@ -7,7 +7,7 @@ public class Main : MonoBehaviour
     public int maxEnemies = 6;
     private bool levelCleared = false;
 
-    static private Main S;
+    public static Main S;
 
     [Header("Inscribed")]
     public GameObject[] prefabEnemies;
@@ -74,6 +74,9 @@ public class Main : MonoBehaviour
 
     static public void HERO_DIED()
     {
+        if (S != null)
+        {
         S.DelayedRestart();
+        }
     }
 }
