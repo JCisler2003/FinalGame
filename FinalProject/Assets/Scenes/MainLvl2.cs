@@ -4,13 +4,13 @@ using UnityEngine.SceneManagement;
 public class MainLvl2 : MonoBehaviour
 {
     private int enemiesSpawned = 0;
-    public int maxEnemies = 6;
+    public int maxEnemies = 8;
 
     private int type1Spawned = 0;
     private int type2Spawned = 0;
     private bool levelCleared = false;
 
-    static private MainLvl2 S;
+    public static MainLvl2 S;
 
     [Header("Inscribed")]
     public GameObject[] prefabEnemies;         // 0 = FlyingEye, 1 = Goblin
@@ -34,7 +34,7 @@ public class MainLvl2 : MonoBehaviour
 
         int chosenIndex;
 
-        // Level 2 support (4 of each type)
+        // Spawn 4 of each
         if (type1Spawned >= 4) {
             chosenIndex = 1;
         }
@@ -74,29 +74,22 @@ public class MainLvl2 : MonoBehaviour
 
     void Update()
     {
-        // Check for no enemies left
         if (!levelCleared && enemiesSpawned >= maxEnemies && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
             levelCleared = true;
-            Debug.Log("All enemies cleared! Loading next level...");
-            Invoke(nameof(LoadNextLevel), 2f);
+            Debug.Log("All enemies cleared! Reloading Scene_Lvl2...");
+            Invoke(nameof(ReloadLevel), 2f); // Or advance to a new level later
         }
     }
 
-    void LoadNextLevel()
+    void ReloadLevel()
     {
-        // Replace this with your actual scene name
-        SceneManager.LoadScene("End Screen");
+        SceneManager.LoadScene("Scene_Lvl2");
     }
 
     void DelayedRestart()
     {
-        Invoke(nameof(Restart), gameRestartDelay);
-    }
-
-    void Restart()
-    {
-        SceneManager.LoadScene("Scene_0");
+        Invoke(nameof(ReloadLevel), gameRestartDelay);
     }
 
     public static void HERO_DIED()
