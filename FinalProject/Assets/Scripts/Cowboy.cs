@@ -12,7 +12,9 @@ public class Cowboy : MonoBehaviour
     
     [Header("Sword Attack Settings")]
     public Transform hitPoint;
-    public float attackRange = 1.5f;
+    public BoxCollider2D hitBox;
+    //public float attackRange = 1.5f;
+    public Vector2 attackRange;
     public float attackDamage = 5f;
     public LayerMask enemyLayer;
 
@@ -24,6 +26,9 @@ public class Cowboy : MonoBehaviour
     private Transform visual;
     private Vector3 originalScale;
     private SpriteAnimator spriteAnimator;
+    
+
+    //public BoxCollider2D hitBox;
 
     void Awake()
     {
@@ -41,6 +46,13 @@ public class Cowboy : MonoBehaviour
         {
             Debug.LogWarning("Visual child object 'Sprite' not found. Flip will not work.");
         }
+
+         hitBox = hitPoint.GetComponent<BoxCollider2D>();
+
+    //      if (hitBox == null && hitPoint != null)
+    // {
+    //     hitBox = hitPoint.GetComponent<BoxCollider2D>();
+    // }
     }
 
     void Update()
@@ -126,7 +138,8 @@ public class Cowboy : MonoBehaviour
 
     public void DealSwordDamage()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(hitPoint.position, attackRange, enemyLayer);
+        // Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(hitPoint.position, attackRange, enemyLayer);
+         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll((Vector2)hitBox.transform.position, hitBox.size, 0f, enemyLayer);
 
         foreach (Collider2D enemyCollider in hitEnemies)
         {
@@ -140,4 +153,26 @@ public class Cowboy : MonoBehaviour
             }
         }
     }
+
+//     public void DealSwordDamage()
+// {
+//     // Calculate the center of the hitbox in world space
+//     Vector2 center = (Vector2)hitBox.transform.position + hitBox.offset;
+//     Vector2 size = hitBox.size;
+
+//     // Get all enemies within the box area
+//     Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(center, size, 0f, enemyLayer);
+
+//     foreach (Collider2D enemyCollider in hitEnemies)
+//     {
+//         if (enemyCollider.CompareTag("Enemy"))
+//         {
+//             Enemy enemy = enemyCollider.GetComponentInChildren<Enemy>();
+//             if (enemy != null)
+//             {
+//                 enemy.TakeDamage(attackDamage);
+//             }
+//         }
+//     }
+// }
 }
