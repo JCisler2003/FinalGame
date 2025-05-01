@@ -1,20 +1,21 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainLvl2 : MonoBehaviour
+public class MainLvl4 : MonoBehaviour
 {
     private int enemiesSpawned = 0;
-    public int maxEnemies = 8;
+    public int maxEnemies = 12;
 
     private int type1Spawned = 0;
     private int type2Spawned = 0;
     private bool levelCleared = false;
 
-    public static MainLvl2 S;
+    public static MainLvl4 S;
 
     [Header("Inscribed")]
     public GameObject[] prefabEnemies; // 0 = FlyingEye, 1 = Goblin
     public float enemySpawnPerSecond = 0.5f;
+    public float enemyInsetDefault = 1.5f;
     public float gameRestartDelay = 2;
 
     private BoundsCheck bndCheck;
@@ -23,6 +24,7 @@ public class MainLvl2 : MonoBehaviour
     {
         S = this;
         bndCheck = GetComponent<BoundsCheck>();
+
         Invoke(nameof(SpawnEnemy), 1f / enemySpawnPerSecond);
     }
 
@@ -30,12 +32,31 @@ public class MainLvl2 : MonoBehaviour
     {
         if (enemiesSpawned >= maxEnemies) return;
 
-        int chosenIndex = (type1Spawned >= 4) ? 1 : (type2Spawned >= 4) ? 0 : Random.Range(0, 2);
+        int chosenIndex;
+
+        if (type1Spawned >= 6)
+            chosenIndex = 1;
+        else if (type2Spawned >= 6)
+            chosenIndex = 0;
+        else
+            chosenIndex = Random.Range(0, 2);
 
         GameObject go = Instantiate(prefabEnemies[chosenIndex]);
 
-        float spawnY = (chosenIndex == 0) ? new float[] { 0.5f, 0.75f }[Random.Range(0, 2)] : -1.5f;
-        go.transform.position = new Vector3(10f, spawnY, 0f);
+        float spawnX = 10f;
+        float spawnY;
+
+        if (chosenIndex == 0) // Flying Eye
+        {
+            float[] possibleY = new float[] { 0.5f, 0.75f };
+            spawnY = possibleY[Random.Range(0, possibleY.Length)];
+        }
+        else // Goblin
+        {
+            spawnY = -1.5f;
+        }
+
+        go.transform.position = new Vector3(spawnX, spawnY, 0f);
 
         enemiesSpawned++;
         if (chosenIndex == 0) type1Spawned++;
@@ -52,13 +73,14 @@ public class MainLvl2 : MonoBehaviour
         if (!levelCleared && enemiesSpawned >= maxEnemies && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
             levelCleared = true;
+            Debug.Log("Level 4 completed! Loading End_Scene...");
             Invoke(nameof(LoadNextLevel), 2f);
         }
     }
 
     void LoadNextLevel()
     {
-        SceneManager.LoadScene("Scene_Lvl3");
+        SceneManager.LoadScene("End_Scene");
     }
 
     void DelayedRestart()
@@ -68,11 +90,14 @@ public class MainLvl2 : MonoBehaviour
 
     void ReloadLevel()
     {
-        SceneManager.LoadScene("Scene_Lvl2");
+        SceneManager.LoadScene("Scene_Lvl4");
     }
 
     public static void HERO_DIED()
     {
-        if (S != null) S.DelayedRestart();
+        if (S != null)
+        {
+            S.DelayedRestart();
+        }
     }
 }

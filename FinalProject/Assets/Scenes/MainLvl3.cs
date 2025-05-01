@@ -1,19 +1,19 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainLvl2 : MonoBehaviour
+public class MainLvl3 : MonoBehaviour
 {
     private int enemiesSpawned = 0;
-    public int maxEnemies = 8;
+    public int maxEnemies = 12;
 
     private int type1Spawned = 0;
     private int type2Spawned = 0;
     private bool levelCleared = false;
 
-    public static MainLvl2 S;
+    public static MainLvl3 S;
 
     [Header("Inscribed")]
-    public GameObject[] prefabEnemies; // 0 = FlyingEye, 1 = Goblin
+    public GameObject[] prefabEnemies;
     public float enemySpawnPerSecond = 0.5f;
     public float gameRestartDelay = 2;
 
@@ -30,10 +30,9 @@ public class MainLvl2 : MonoBehaviour
     {
         if (enemiesSpawned >= maxEnemies) return;
 
-        int chosenIndex = (type1Spawned >= 4) ? 1 : (type2Spawned >= 4) ? 0 : Random.Range(0, 2);
+        int chosenIndex = (type1Spawned >= 6) ? 1 : (type2Spawned >= 6) ? 0 : Random.Range(0, 2);
 
         GameObject go = Instantiate(prefabEnemies[chosenIndex]);
-
         float spawnY = (chosenIndex == 0) ? new float[] { 0.5f, 0.75f }[Random.Range(0, 2)] : -1.5f;
         go.transform.position = new Vector3(10f, spawnY, 0f);
 
@@ -58,7 +57,7 @@ public class MainLvl2 : MonoBehaviour
 
     void LoadNextLevel()
     {
-        SceneManager.LoadScene("Scene_Lvl3");
+        SceneManager.LoadScene("Scene_Lvl4");
     }
 
     void DelayedRestart()
@@ -68,7 +67,7 @@ public class MainLvl2 : MonoBehaviour
 
     void ReloadLevel()
     {
-        SceneManager.LoadScene("Scene_Lvl2");
+        SceneManager.LoadScene("Scene_Lvl3");
     }
 
     public static void HERO_DIED()

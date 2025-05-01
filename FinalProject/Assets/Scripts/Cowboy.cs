@@ -126,7 +126,16 @@ public class Cowboy : MonoBehaviour
         {
             MainLvl2.HERO_DIED();
         }
+        else if (MainLvl3.S != null)
+        {
+            MainLvl3.HERO_DIED();
+        }
+        else if (MainLvl4.S != null)
+        {
+            MainLvl4.HERO_DIED();
+        }
     }
+
 
     void OnCollisionEnter2D(Collision2D coll)
     {
