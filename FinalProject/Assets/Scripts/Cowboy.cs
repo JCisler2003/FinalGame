@@ -129,6 +129,9 @@ public class Cowboy : MonoBehaviour
         case "Scene_Lvl4":
             MainLvl4.HERO_DIED();
             break;
+        case "Scene_Lvl5":
+            MainLvl5.HERO_DIED();
+            break;
         default:
             Debug.LogWarning("Unrecognized scene name: " + sceneName);
             break;
