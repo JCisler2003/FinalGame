@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2135436902439355866}
@@ -136,12 +136,11 @@ GameObject:
   - component: {fileID: 1414660925056427973}
   - component: {fileID: 3635159997694540547}
   - component: {fileID: 1180863521421982683}
-  - component: {fileID: 7291708181547852979}
   - component: {fileID: 3763256516105256099}
   - component: {fileID: 1022791571609997130}
   - component: {fileID: 828349595261047801}
   m_Layer: 9
-  m_Name: Skeleton
+  m_Name: SkeletonJC
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,7 +224,7 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Size: {x: 0.35, y: 0.7}
   m_Direction: 0
 --- !u!114 &1180863521421982683
 MonoBehaviour:
@@ -243,27 +242,9 @@ MonoBehaviour:
   radius: 1
   keepOnScreen: 1
   screenLocs: 0
-  camWidth: 0
-  camHeight: 0
-  TopScreen: 0
---- !u!114 &7291708181547852979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7755295360281197551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef6c85d36856ce24e88866375e7beacc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7755295360281197551}
-  spawnInterval: 3
-  maxEnemies: 5
-  spawnX: 12
-  spawnXLeft: -12
-  spawnYRange: {x: -3, y: 3}
+  camWidth: 8.888889
+  camHeight: 5
+  TopScreen: -1.685
 --- !u!114 &3763256516105256099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1584f0299d692944be2dab319ad842e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 1
   health: 100
   score: 100
 --- !u!61 &828349595261047801
@@ -337,5 +318,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.35, y: 0.7}
   m_EdgeRadius: 0
