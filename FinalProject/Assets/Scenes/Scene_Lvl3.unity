@@ -695,15 +695,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 707965003}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7881f0eee5559e4da9454575a0970c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 3be1e63cb0ef8d04c9b77a4d9760971f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnemies: 8
+  maxEnemies: 12
   prefabEnemies:
-  - {fileID: 7907387256903112242, guid: ffb394de7aec0254eb5a21ffddb8bc50, type: 3}
+  - {fileID: 3087359106199534221, guid: 2ff7dd23e502a4546bca1c61b55e8b2c, type: 3}
   - {fileID: 4739735912959981280, guid: 3757de17d5421d94389ab970b8b7da9f, type: 3}
-  enemySpawnPerSecond: 0.125
-  enemyInsetDefault: 1.5
+  enemySpawnPerSecond: 0.5
   gameRestartDelay: 2
 --- !u!1 &774500198
 GameObject:

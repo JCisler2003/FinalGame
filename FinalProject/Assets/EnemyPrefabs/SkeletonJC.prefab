@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6471565312983279823}
   - component: {fileID: 3662050613251158949}
   - component: {fileID: 4994057150801899826}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,10 +137,10 @@ GameObject:
   - component: {fileID: 3635159997694540547}
   - component: {fileID: 1180863521421982683}
   - component: {fileID: 3763256516105256099}
-  - component: {fileID: 1022791571609997130}
   - component: {fileID: 828349595261047801}
-  m_Layer: 9
-  m_Name: SkeletonJC
+  - component: {fileID: -4256016869305690025}
+  m_Layer: 13
+  m_Name: Skeleton
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,8 +155,8 @@ Transform:
   m_GameObject: {fileID: 7755295360281197551}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1563, y: -1.7020556, z: 51.371223}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 10, y: -7, z: 0.053}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6471565312983279823}
@@ -242,9 +242,9 @@ MonoBehaviour:
   radius: 1
   keepOnScreen: 1
   screenLocs: 0
-  camWidth: 8.888889
-  camHeight: 5
-  TopScreen: -1.685
+  camWidth: 0
+  camHeight: 0
+  TopScreen: 0
 --- !u!114 &3763256516105256099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,21 +259,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   changeDirectionTime: 2
---- !u!114 &1022791571609997130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7755295360281197551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1584f0299d692944be2dab319ad842e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  health: 100
-  score: 100
 --- !u!61 &828349595261047801
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -320,3 +305,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.35, y: 0.7}
   m_EdgeRadius: 0
+--- !u!114 &-4256016869305690025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7755295360281197551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3f284a4b3cf61488f1155dd1c8b60f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  healthBarPrefab: {fileID: 1762226948993904153, guid: 3924e6d2ce6da89469b7901b2bbd6343, type: 3}

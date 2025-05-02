@@ -80,7 +80,7 @@ public class MainLvl4 : MonoBehaviour
 
     void LoadNextLevel()
     {
-        SceneManager.LoadScene("End_Scene");
+        SceneManager.LoadScene("End_Screen");
     }
 
     void DelayedRestart()

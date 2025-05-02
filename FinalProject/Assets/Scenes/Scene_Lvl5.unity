@@ -541,7 +541,7 @@ GameObject:
   - component: {fileID: 707965007}
   - component: {fileID: 707965006}
   - component: {fileID: 707965004}
-  - component: {fileID: 707965011}
+  - component: {fileID: 707965010}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -686,7 +686,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &707965011
+--- !u!114 &707965010
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -695,16 +695,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 707965003}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a128beca956a8341bcc05998d42e484, type: 3}
+  m_Script: {fileID: 11500000, guid: b7c0de77961c3f945ba20914c89d10c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnemies: 12
   prefabEnemies:
-  - {fileID: 3087359106199534221, guid: 2ff7dd23e502a4546bca1c61b55e8b2c, type: 3}
+  - {fileID: 7907387256903112242, guid: ffb394de7aec0254eb5a21ffddb8bc50, type: 3}
   - {fileID: 4739735912959981280, guid: 3757de17d5421d94389ab970b8b7da9f, type: 3}
+  bossEnemy: {fileID: 7755295360281197551, guid: 1aae86ab218ecfa419c863697905a9a9, type: 3}
   enemySpawnPerSecond: 0.5
-  enemyInsetDefault: 1.5
   gameRestartDelay: 2
+  maxEnemies: 12
 --- !u!1 &774500198
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,7 +905,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 4
+  m_text: Level 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
