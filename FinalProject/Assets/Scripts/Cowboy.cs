@@ -1,6 +1,6 @@
 //using UnityEditor.Callbacks;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Cowboy : MonoBehaviour
 {
     static public Cowboy S { get; private set; }
@@ -110,26 +110,30 @@ public class Cowboy : MonoBehaviour
     }
 
     void Die()
-    {
-        Destroy(this.gameObject);
+{
+    Destroy(this.gameObject);
 
-        if (Main.S != null)
-        {
+    string sceneName = SceneManager.GetActiveScene().name;
+
+    switch (sceneName)
+    {
+        case "Scene_0":
             Main.HERO_DIED();
-        }
-        else if (MainLvl2.S != null)
-        {
+            break;
+        case "Scene_Lvl2":
             MainLvl2.HERO_DIED();
-        }
-        else if (MainLvl3.S != null)
-        {
+            break;
+        case "Scene_Lvl3":
             MainLvl3.HERO_DIED();
-        }
-        else if (MainLvl4.S != null)
-        {
+            break;
+        case "Scene_Lvl4":
             MainLvl4.HERO_DIED();
-        }
+            break;
+        default:
+            Debug.LogWarning("Unrecognized scene name: " + sceneName);
+            break;
     }
+}
 
 
     void OnCollisionEnter2D(Collision2D coll)
