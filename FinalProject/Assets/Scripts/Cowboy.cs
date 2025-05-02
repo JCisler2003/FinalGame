@@ -48,11 +48,6 @@ public class Cowboy : MonoBehaviour
         }
 
          hitBox = hitPoint.GetComponent<BoxCollider2D>();
-
-    //      if (hitBox == null && hitPoint != null)
-    // {
-    //     hitBox = hitPoint.GetComponent<BoxCollider2D>();
-    // }
     }
 
     void Update()

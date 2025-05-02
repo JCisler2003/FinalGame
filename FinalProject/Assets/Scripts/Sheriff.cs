@@ -6,10 +6,8 @@ public class Sheriffs : Enemy
 
     [Header("Sheriff Private Fields")]
     [SerializeField] private Vector3 p0;
-    [SerializeField] private float frequency = 1f; // speed of oscillation
-    [SerializeField] private float amplitude = 2f; // range of up/down movement
-    [SerializeField] private float verticalSpeed = 2f;
-private int direction = 1;
+    
+//private int direction = 1;
     public float jumpForce = 12f;
     public float jumpInterval = 1f;
 
