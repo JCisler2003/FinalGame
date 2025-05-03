@@ -28,7 +28,7 @@ public class MainLvl5 : MonoBehaviour
 
     void SpawnBoss()
     {
-        Vector3 bossSpawnPos = new Vector3(8f, 0f, 0f); // adjust as needed
+        Vector3 bossSpawnPos = new Vector3(8f, -1.5f, 0f); // adjust as needed
         bossInstance = Instantiate(bossEnemy, bossSpawnPos, Quaternion.identity);
     }
 

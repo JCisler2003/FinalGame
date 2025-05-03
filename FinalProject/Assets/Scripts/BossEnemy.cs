@@ -57,7 +57,18 @@ public class BossEnemy : MonoBehaviour
 
     void Die()
     {
-        // Optional: play death animation or sound here
         Destroy(gameObject);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Cowboy cowboy = other.GetComponent<Cowboy>();
+            if (cowboy != null)
+            {
+                cowboy.TakeDamage(1);
+            }
+        }
     }
 }

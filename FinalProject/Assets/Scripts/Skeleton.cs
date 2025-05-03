@@ -42,7 +42,6 @@ public class Skeleton : Enemy
             Cowboy cowboy = other.GetComponent<Cowboy>();
             if (cowboy != null)
             {
-                Debug.Log("I got hit");
                 cowboy.TakeDamage(1);
             }
         }
