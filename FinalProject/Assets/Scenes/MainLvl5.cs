@@ -63,7 +63,7 @@ public class MainLvl5 : MonoBehaviour
 
     void LoadNextScene()
     {
-        SceneManager.LoadScene("End_Scene"); // or win screen
+        SceneManager.LoadScene("End_Screen"); // or win screen
     }
 
     void DelayedRestart()
