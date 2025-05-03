@@ -28,12 +28,23 @@ public class Skeleton : Enemy
     pos = tempPos;
 
     
-    
-    // Check bounds or wall
     if (bndCheck.LocIs(BoundsCheck.eScreenLocs.offLeft) || bndCheck.LocIs(BoundsCheck.eScreenLocs.offRight))
     {
         direction *= -1;
         spriteAnimator.FlipSprite(direction);
     }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Cowboy cowboy = other.GetComponent<Cowboy>();
+            if (cowboy != null)
+            {
+                Debug.Log("I got hit");
+                cowboy.TakeDamage(1);
+            }
+        }
     }
 }

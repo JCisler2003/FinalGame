@@ -12,7 +12,7 @@ public class BossEnemy : MonoBehaviour
     private Image healthFill;
     private Transform barTransform;
 
-    void Start()
+    void Awake()
     {
         currentHealth = maxHealth;
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6471565312983279823}
   - component: {fileID: 3662050613251158949}
   - component: {fileID: 4994057150801899826}
-  m_Layer: 13
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2135436902439355866}
@@ -139,9 +139,9 @@ GameObject:
   - component: {fileID: 3763256516105256099}
   - component: {fileID: 828349595261047801}
   - component: {fileID: -4256016869305690025}
-  m_Layer: 13
-  m_Name: Skeleton
-  m_TagString: Enemy
+  m_Layer: 9
+  m_Name: SkeletonJC
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,7 +155,7 @@ Transform:
   m_GameObject: {fileID: 7755295360281197551}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: -7, z: 0.053}
+  m_LocalPosition: {x: 10, y: -0.402, z: 0.053}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -187,7 +187,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 6
 --- !u!70 &3635159997694540547
 CapsuleCollider2D:
@@ -205,7 +205,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -242,9 +242,9 @@ MonoBehaviour:
   radius: 1
   keepOnScreen: 1
   screenLocs: 0
-  camWidth: 0
-  camHeight: 0
-  TopScreen: 0
+  camWidth: 8.888889
+  camHeight: 5
+  TopScreen: -1.685
 --- !u!114 &3763256516105256099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,10 +272,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

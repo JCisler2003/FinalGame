@@ -62,7 +62,8 @@ public class Cowboy : MonoBehaviour
             spriteAnimator.FlipSprite(hAxis);
 
             Vector3 HitPointPos = hitPoint.localPosition;
-            HitPointPos.x *= -1;
+           // HitPointPos.x *= -1;
+            HitPointPos.x = Mathf.Abs(HitPointPos.x) * (hAxis > 0 ? 1 : -1);
             hitPoint.localPosition = HitPointPos;
         }
 
@@ -162,28 +163,16 @@ public class Cowboy : MonoBehaviour
                     enemy.TakeDamage(attackDamage);
                 }
             }
+            if (enemyCollider.CompareTag("Boss"))
+            {
+                BossEnemy enemy = enemyCollider.GetComponentInChildren<BossEnemy>();
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(attackDamage);
+                }
+            }
         }
     }
 
-//     public void DealSwordDamage()
-// {
-//     // Calculate the center of the hitbox in world space
-//     Vector2 center = (Vector2)hitBox.transform.position + hitBox.offset;
-//     Vector2 size = hitBox.size;
 
-//     // Get all enemies within the box area
-//     Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(center, size, 0f, enemyLayer);
-
-//     foreach (Collider2D enemyCollider in hitEnemies)
-//     {
-//         if (enemyCollider.CompareTag("Enemy"))
-//         {
-//             Enemy enemy = enemyCollider.GetComponentInChildren<Enemy>();
-//             if (enemy != null)
-//             {
-//                 enemy.TakeDamage(attackDamage);
-//             }
-//         }
-//     }
-// }
 }

@@ -272,7 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxEnemies: 6
   prefabEnemies:
-  - {fileID: 7755295360281197551, guid: 1aae86ab218ecfa419c863697905a9a9, type: 3}
+  - {fileID: 7907387256903112242, guid: ffb394de7aec0254eb5a21ffddb8bc50, type: 3}
   enemySpawnPerSecond: 0.125
   enemyInsetDefault: 1.5
   gameRestartDelay: 2
